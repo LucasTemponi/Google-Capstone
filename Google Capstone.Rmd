@@ -1,0 +1,40 @@
+---
+title: "Google Capstone"
+author: "Lucas Temponi"
+date: "12/6/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library('janitor')
+library('stringr')
+library('readr')
+library('dbplyr')
+library('tidyverse')
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+files <- list.files(path='/cloud/project/Fitabase Data 4.12.16-5.12.16')
+names <- str_split_fixed(files,"_merged",2)[,1]
+for (i in names){
+  assign(i,read_csv(paste('/cloud/project/Fitabase Data 4.12.16-5.12.16/',i,"_merged.csv",sep="")))
+}
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
